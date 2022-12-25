@@ -24,8 +24,8 @@ public class OrdersController {
         return new ResponseEntity<>((List<Order>) orderRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Order> getOrder(@RequestParam UUID id) {
+    @GetMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Order> getOrder(@PathVariable UUID id) {
         Optional<Order> order = orderRepository.findById(id);
         return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
@@ -36,7 +36,7 @@ public class OrdersController {
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/", consumes = "application/json", produces = "application/json")
+    @PutMapping(path = "/change", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Order> changeOrderLocationByCustomerName(@RequestBody Order order, @RequestParam String orderLocation)
     {
         Order currentOrder = orderRepository.findById(order.getId()).orElseThrow();

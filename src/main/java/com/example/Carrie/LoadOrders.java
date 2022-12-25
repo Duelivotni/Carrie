@@ -12,8 +12,7 @@ public class LoadOrders {
     @Bean
     CommandLineRunner initDatabase(OrderRepository repo) {
         return args -> {
-            log.info("Loading John into database.." + repo.save(new Order("California", "John")));
-            log.info("Loading Clark into database.." + repo.save(new Order("Iova", "Clark")));
+
         };
     }
 }
